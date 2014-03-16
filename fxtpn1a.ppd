@@ -199,7 +199,7 @@ restore
 *CloseUI: *Duplex
 
 *%=================================================
-*% Paper Handling 
+*% Paper Handling
 *%=================================================
 *OpenUI *PageSize: PickOne
 *OrderDependency: 60.0 AnySetup *PageSize
@@ -273,7 +273,7 @@ restore
         {pop pop} ifelse
       }{pop pop} ifelse
     }{pop} ifelse setpagedevice
-" 
+"
 *End
 *PageSize B5/B5 (182 x 257mm): "
     6 dict dup /PageSize [516 729] put dup /ImagingBBox null put
@@ -432,7 +432,7 @@ restore
         {pop pop} ifelse
       }{pop pop} ifelse
     }{pop} ifelse setpagedevice
-" 
+"
 *End
 *PageSize 11x15/11x15": "
     6 dict dup /PageSize [792 1080] put dup /ImagingBBox null put
@@ -445,7 +445,7 @@ restore
         {pop pop} ifelse
       }{pop pop} ifelse
     }{pop} ifelse setpagedevice
-" 
+"
 *End
 *PageSize STATEMENT/Statement (139.7 x 215.9mm): "
     6 dict dup /PageSize [396 612] put dup /ImagingBBox null put
@@ -605,9 +605,9 @@ restore
    dup [420 595]    (A5) put
    dup [298 420]    (A6) put
    dup [459 649]    (ENV_C5) put
-   dup [279 540]    (ENV_MONARCH) put 
+   dup [279 540]    (ENV_MONARCH) put
    dup [297 684]    (ENV_10) put
-   dup [312 624]    (ENV_DL) put   
+   dup [312 624]    (ENV_DL) put
    dup [612 792]    (Letter) put
    dup [612 1008]   (LEGAL) put
    dup [612 936]    (FOLIO) put
@@ -635,7 +635,7 @@ restore
 *End
 *CloseUI: *PageSize
 *%=================================================
-*% Page Region 
+*% Page Region
 *%=================================================
 *OpenUI *PageRegion:  PickOne
 *OrderDependency: 80.0 AnySetup *PageRegion
@@ -707,7 +707,7 @@ restore
         {pop pop} ifelse
       }{pop pop} ifelse
     }{pop} ifelse setpagedevice
-" 
+"
 *End
 *%  Addition of Unsupported Papers ends here
 *PageRegion B5/B5 (182 x 257mm):: "
@@ -867,7 +867,7 @@ restore
         {pop pop} ifelse
       }{pop pop} ifelse
     }{pop} ifelse setpagedevice
-" 
+"
 *End
 *PageRegion 11x15/11x15": "
     6 dict dup /PageSize [792 1080] put dup /ImagingBBox null put
@@ -880,7 +880,7 @@ restore
         {pop pop} ifelse
       }{pop pop} ifelse
     }{pop} ifelse setpagedevice
-" 
+"
 *End
 *PageRegion STATEMENT/Statement (139.7 x 215.9mm): "
     6 dict dup /PageSize [396 612] put dup /ImagingBBox null put
@@ -1120,7 +1120,7 @@ restore
 *NonUIOrderDependency: 80.0 AnySetup *CustomPageSize
 *CustomPageSize True: "
 5 dict dup /LeadingEdge null put
-dup /MediaType (Custom) put 
+dup /MediaType (Custom) put
 dup /MediaClass null put currentpagedevice
 dup /MediaPosition get null eq
 {/Policies 2 copy known
@@ -1301,4 +1301,3 @@ restore
 *% Produced using PPDTool 2.3's BLDPPD43.PS file
 *% Last Edit Date: 2007-02-28
 *% end of PPD file
-
