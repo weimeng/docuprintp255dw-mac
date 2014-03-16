@@ -1,0 +1,1304 @@
+*PPD-Adobe: "4.3"
+*%-------------------------------------------------------------------------
+*% Version Section
+*%-------------------------------------------------------------------------
+*FileVersion: "1.4"
+*FormatVersion: "4.3"
+*LanguageEncoding: ISOLatin1
+*LanguageVersion: English
+*Manufacturer: "FX"
+*PCFileName: "fxpn1a.PPD"
+*Product: "(DocuPrint P255 d/dw)"
+*PSVersion: "(3018.102) 1"
+*ShortNickName: "FX DocuPrint P255 d/dw PS"
+*ModelName: "FX DocuPrint P255 d/dw PS""
+*NickName: "FX DocuPrint P255 d/dw PS""
+
+*%-------------------------------------------------------------------------
+*% === Options and Constraints =========
+*%-------------------------------------------------------------------------
+
+*%-------------------------------------------------------------------------
+*% ==== Device Capabilities ===============
+*%-------------------------------------------------------------------------
+*LanguageLevel: "3"
+*Protocols: TBCP
+*1284Modes Parallel: Compat Nibble ECP
+*1284DeviceID: "
+MFG:FUJI XEROX;CMD:PJL,RASTER,DOWNLOAD,PCLXL,PCL,POSTSCRIPT;MDL:DocuPrint P255 PS;DES:FX DocuPrint P255 PS;CLS:PRINTER;"
+*End
+
+*FreeVM: "11140352"
+*VMOption 256Meg/Standard 256MB: "11140352"
+*VMOption 512Meg/512MB: "11140352"
+*VMOption 768Meg/768MB: "11140352"
+*VMOption 1280Meg/1280MB: "11140352"
+
+*ColorDevice: False
+*DefaultColorSpace: Gray
+*VariablePaperSize: True
+*GraphicsTrueGray: True
+*TextTrueGray: True
+*LandscapeOrientation: Plus90
+*TTRasterizer: Type42
+*?TTRasterizer: "
+   save
+      42 /FontType resourcestatus
+      { pop pop (Type42)} {pop pop (None)} ifelse = flush
+   restore
+"
+*End
+*FileSystem: True
+*?FileSystem: "
+  save false
+   (%disk?%)
+   { currentdevparams dup /Writeable known
+      { /Writeable get {pop true} if }  { pop } ifelse
+    } 10 string /IODevice resourceforall
+    {(True)}{(False)} ifelse = flush
+ restore
+"
+*End
+
+*Throughput: "30"
+*Password: "()"
+*ExitServer: "
+ count 0 eq
+ { false } { true exch startjob } ifelse
+ not {
+     (WARNING: Cannot modify initial VM.) =
+     (Missing or invalid password.) =
+     (Please contact the author of this software.) = flush quit
+     } if
+"
+*End
+*Reset: "
+ count 0 eq
+ { false } { true exch startjob } ifelse
+ not {
+    (WARNING: Cannot reset printer.) =
+    (Missing or invalid password.) =
+    (Please contact the author of this software.) = flush quit
+    } if
+ systemdict /quit get exec
+ (WARNING : Printer Reset Failed.) = flush
+"
+*End
+
+*DefaultResolution: 600dpi
+*?Resolution: "
+save
+    currentpagedevice /HWResolution get dup aload pop eq
+    {0 get cvi 9 string cvs print}
+    {aload pop exch cvi 9 string cvs print (x) print cvi 9 string cvs print}
+    ifelse (dpi) =
+restore
+"
+*End
+
+*%-------------------------------------------------------------------------
+*% Resolution
+*%-------------------------------------------------------------------------
+
+*OpenUI *ImageQuality/Image Quality: PickOne
+*OrderDependency: 10.0 AnySetup *ImageQuality
+*DefaultImageQuality: Standard
+*ImageQuality Standard/Standard: "
+    2 dict dup /HWResolution [600 600] put
+    dup 2 dict dup /Type 26 put dup /ValuesPerColorComponent 2 put
+    /DeviceRenderingInfo exch put
+    setpagedevice
+"
+*End
+*ImageQuality HighResolution/High Resolution: "
+    2 dict dup /HWResolution [1200 1200] put
+    dup 2 dict dup /Type 26 put dup /ValuesPerColorComponent 16 put
+    /DeviceRenderingInfo exch put
+    setpagedevice
+"
+*End
+*?ImageQuality: "
+"
+*End
+*CloseUI: *ImageQuality
+
+
+*%-------------------------------------------------------------------------
+*% Halftone Information ===============
+*%-------------------------------------------------------------------------
+
+*DefaultHalftoneType: 5
+*ScreenFreq: "141.0"
+*ScreenAngle: "45.0"
+*DefaultScreenProc: Dot
+*ScreenProc Dot: "{180 mul cos exch 180 mul cos add 2 div} bind"
+*ScreenProc Line: "{ pop }"
+*ScreenProc Ellipse: "{ dup 5 mul 8 div mul exch dup mul exch add sqrt 1 exch sub }"
+*DefaultTransfer: Null
+*Transfer Null: "{ }"
+*Transfer Null.Inverse: "{ 1 exch sub }"
+
+*%=================================================
+*% Duplex information
+*%=================================================
+*OpenUI *Duplex/2-Sided Print:  PickOne
+*OrderDependency: 110.0 AnySetup *Duplex
+*DefaultDuplex: None
+*Duplex None/1-Sided Print: "
+    1 dict
+    dup /Duplex false put
+    setpagedevice
+"
+*End
+*Duplex DuplexTumble/Flip on Short edge: "
+    userdict /$$OEMPreConfigDict known {
+        userdict /$$OEMPreConfigDict get /Duplex 2 copy known {
+            get exec false
+        }{
+            pop pop true
+        } ifelse
+    }{
+        true
+    } ifelse
+    {
+        2 dict dup /Duplex true put
+        dup /Tumble true put setpagedevice
+    } if
+"
+*End
+*Duplex DuplexNoTumble/Flip on Long edge: "
+    userdict /$$OEMPreConfigDict known {
+        userdict /$$OEMPreConfigDict get /Duplex 2 copy known {
+            get exec false
+        }{
+            pop pop true
+        } ifelse
+    }{
+        true
+    } ifelse
+    {
+        2 dict dup /Duplex true put
+        dup /Tumble false put setpagedevice
+    } if
+"
+*End
+*?Duplex: "
+save
+   currentpagedevice /Duplex known
+   { currentpagedevice /Duplex get
+       { currentpagedevice /Tumble get
+          {(DuplexTumble)}{(DuplexNoTumble)}ifelse
+       }
+       { (None) } ifelse
+   }
+   { (None)}
+   ifelse = flush
+restore
+"
+*End
+*CloseUI: *Duplex
+
+*%=================================================
+*% Paper Handling 
+*%=================================================
+*OpenUI *PageSize: PickOne
+*OrderDependency: 60.0 AnySetup *PageSize
+*DefaultPageSize: Letter
+*PageSize A1/A1 (594 x 841mm): "
+    6 dict dup /PageSize [1684 2384] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize A2/A2 (420 x 594mm): "
+    6 dict dup /PageSize [1192 1684] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize A3/A3 (297 x 420mm): "
+    6 dict dup /PageSize [842 1192] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*%  Unsupported Papers for Allow Scaling From Larger Paper (Virtual Paper Sizes)
+*%  No commands are associated with these
+*%  The paper sizes for this printer are B4
+*PageSize B4/B4 (257 x 364mm): "
+    6 dict dup /PageSize [729 1032] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*%  Addition of Unsupported Papers ends here
+
+*%  Addition of Unsupported Papers ends here
+*PageSize A4/A4(210 x 297mm): "
+    6 dict dup /PageSize [595 842] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+" 
+*End
+*PageSize B5/B5 (182 x 257mm): "
+    6 dict dup /PageSize [516 729] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize A5/A5 (148 x 210mm): "
+    6 dict dup /PageSize [420 595] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize A6/A6 (105 x 148mm): "
+    6 dict dup /PageSize [298 420] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize ENV_C5/C5 (162 x 229mm): "
+     6 dict dup /PageSize [459 649] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize ENV_MONARCH/Monarch (3.875 x 7.5"): "
+    6 dict dup /PageSize [279 540] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize ENV_10/Com10 (4.125 x 9.5"): "
+    6 dict dup /PageSize [297 684] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize ENV_DL/DL (110 x 220mm): "
+    6 dict dup /PageSize [312 624] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize Letter/Letter (8.5 x 11"): "
+    6 dict dup /PageSize [612 792] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize LEGAL/Legal (8.5 x 14"): "
+    6 dict dup /PageSize [612 1008] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize FOLIO/Folio (8.5 x 13"): "
+    6 dict dup /PageSize [612 936] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize EXECUTIVE/Executive (7.25 x 10.5"): "
+    6 dict dup /PageSize [522 756] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*%  Unsupported Papers for Allow Scaling From Larger Paper (Virtual Paper Sizes)
+*%  No commands are associated with these
+*%  The paper sizes for this printer are A1, A3, A2, 10X11, 11X15
+*PageSize 10X11/10x11": "
+    6 dict dup /PageSize [720 792] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+" 
+*End
+*PageSize 11x15/11x15": "
+    6 dict dup /PageSize [792 1080] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+" 
+*End
+*PageSize STATEMENT/Statement (139.7 x 215.9mm): "
+    6 dict dup /PageSize [396 612] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize POSTCARD1/Postcard (100 x 148mm): "
+    6 dict dup /PageSize [283 420] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize POSTCARD2/Postcared (148 x 200mm): "
+    6 dict dup /PageSize [420 567] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize YOUGATA2/Yougata 2 (114 x 162mm): "
+    6 dict dup /PageSize [323 459] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize YOUGATA3/Yougata 3 (98 x 148mm): "
+    6 dict dup /PageSize [278 420] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize YOUGATA4/Yougata 4 (105 x 235mm): "
+    6 dict dup /PageSize [298 666] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize YOUGATA6/Yougata 6 (98 x 190mm): "
+    6 dict dup /PageSize [278 539] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize YOUNATA3/Younata 3 (120 x 235mm): "
+    6 dict dup /PageSize [341 666] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize NAGAGATA3/Nagagata 3 (120 x 235mm): "
+    6 dict dup /PageSize [340 666] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize NAGAGATA4/Nagagata 4 (90 x 205mm): "
+    6 dict dup /PageSize [255 581] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageSize KAKUGATA3/Kakugata 3 (216 x 277mm): "
+    6 dict dup /PageSize [612 785] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*?PageSize: "
+  save
+   currentpagedevice /PageSize get aload pop
+   2 copy gt {exch} if
+   (Unknown)
+   30 dict
+   dup [1684 2384]  (A1) put
+   dup [1192 1684)  (A2) put
+   dup [842 1192]   (A3) put
+   dup [729 1032]   (B4) put
+   dup [595 842]    (A4) put
+   dup [516 729]    (B5) put
+   dup [420 595]    (A5) put
+   dup [298 420]    (A6) put
+   dup [459 649]    (ENV_C5) put
+   dup [279 540]    (ENV_MONARCH) put 
+   dup [297 684]    (ENV_10) put
+   dup [312 624]    (ENV_DL) put   
+   dup [612 792]    (Letter) put
+   dup [612 1008]   (LEGAL) put
+   dup [612 936]    (FOLIO) put
+   dup [522 756]    (EXECUTIVE) put
+   dup [720 792]		(10X11) put
+   dup [792 1080]   (11x15) put
+	 dup [396 612]    (STATEMENT) put
+	 dup [283 420]    (POSTCARD1) put
+	 dup [420 567]    (POSTCARD2) put
+	 dup [323 459]    (YOUGATA2) put
+	 dup [278 420]    (YOUGATA3) put
+	 dup [298 666]    (YOUGATA4) put
+	 dup [278 539]    (YOUGATA6) put
+	 dup [341 666]    (YOUNATA3) put
+	 dup [340 666]    (NAGAGATA3) put
+	 dup [255 581]    (NAGAGATA4) put
+	 dup [340 666]    (KAKUGATA3) put
+   { exch aload pop 4 index sub abs 5 le exch
+   5 index sub abs 5 le and
+      {exch pop exit} {pop} ifelse
+   } bind forall
+   = flush pop pop
+   restore
+"
+*End
+*CloseUI: *PageSize
+*%=================================================
+*% Page Region 
+*%=================================================
+*OpenUI *PageRegion:  PickOne
+*OrderDependency: 80.0 AnySetup *PageRegion
+*DefaultPageRegion: Letter
+*PageRegion A1/A1 (594 x 841mm): "
+    6 dict dup /PageSize [1684 2384] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion A2/A2 (420 x 594mm): "
+    6 dict dup /PageSize [1192 1684] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion A3/A3 (297 x 420mm): "
+    6 dict dup /PageSize [842 1192] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*%  Unsupported Papers for Allow Scaling From Larger Paper (Virtual Paper Sizes)
+*%  No commands are associated with these
+*%  The paper sizes for this printer are B4
+*PageRegion B4/B4 (257 x 364mm): "
+    6 dict dup /PageSize [729 1032] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*%  Addition of Unsupported Papers ends here
+*PageRegion A4/A4 (210 x 297mm): "
+    6 dict dup /PageSize [595 842] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+" 
+*End
+*%  Addition of Unsupported Papers ends here
+*PageRegion B5/B5 (182 x 257mm):: "
+    6 dict dup /PageSize [516 729] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion A5/A5 (148 x 210mm): "
+    6 dict dup /PageSize [420 595] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion A6/A6 (105 x 148mm): "
+    6 dict dup /PageSize [298 420] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion ENV_C5/C5 (162 x 229mm): "
+     6 dict dup /PageSize [459 649] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion ENV_MONARCH/Monarch (3.875 x 7.5"): "
+    6 dict dup /PageSize [279 540] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion ENV_10/Com10 (4.125 x 9.5"): "
+    6 dict dup /PageSize [297 684] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion ENV_DL/DL (110 x 220mm): "
+    6 dict dup /PageSize [312 624] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion Letter/Letter (8.5 x 11"): "
+    6 dict dup /PageSize [612 792] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion LEGAL/Legal (8.5 x 14"):: "
+    6 dict dup /PageSize [612 1008] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion FOLIO/Folio (8.5 x 13"): "
+    6 dict dup /PageSize [612 936] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion EXECUTIVE/Executive (7.25 x 10.5"): "
+    6 dict dup /PageSize [522 756] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*%  Unsupported Papers for Allow Scaling From Larger Paper (Virtual Paper Sizes)
+*%  No commands are associated with these
+*%  The paper sizes for this printer are A1, A3, A2, 10X11, 11X15
+*PageRegion 10X11/10x11": "
+    6 dict dup /PageSize [720 792] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+" 
+*End
+*PageRegion 11x15/11x15": "
+    6 dict dup /PageSize [792 1080] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+" 
+*End
+*PageRegion STATEMENT/Statement (139.7 x 215.9mm): "
+    6 dict dup /PageSize [396 612] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion POSTCARD1/Postcard (100 x 148mm): "
+    6 dict dup /PageSize [283 420] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion POSTCARD2/Postcard (148 x 200mm): "
+    6 dict dup /PageSize [420 567] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion YOUGATA2/Yougata 2 (114 x 162mm): "
+    6 dict dup /PageSize [323 459] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion YOUGATA3/Yougata 3 (98 x 148mm): "
+    6 dict dup /PageSize [278 420] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion YOUGATA4/Yougata 4 (105 x 235mm): "
+    6 dict dup /PageSize [298 666] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion YOUGATA6/Yougata 6 (98 x 190mm):: "
+    6 dict dup /PageSize [278 539] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion YOUNATA3/Younata 3 (120 x 235mm): "
+    6 dict dup /PageSize [341 666] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion NAGAGATA3/Nagagata 3 (120 x 235mm): "
+    6 dict dup /PageSize [340 666] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion NATAGATA4/Nagagata 4 (90 x 205mm): "
+    6 dict dup /PageSize [255 581] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*PageRegion KAKUGATA3/kakugata 3 (216 x 277mm): "
+    6 dict dup /PageSize [612 785] put dup /ImagingBBox null put
+    dup /LeadingEdge null put
+    dup /MediaClass null put currentpagedevice
+    dup /MediaPosition get null eq
+    {/Policies 2 copy known
+      {get /PageSize 2 copy known
+        {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+        {pop pop} ifelse
+      }{pop pop} ifelse
+    }{pop} ifelse setpagedevice
+"
+*End
+*CloseUI: *PageRegion
+*%=================================================
+*% Imageable Area ===================================
+*%=================================================
+*% The following entries provide information about specific paper keywords.
+*DefaultImageableArea: Letter
+*ImageableArea A1/A1 (594 x 841mm):                                        							 "11.62 11.62 1672.16 2372.31"
+*ImageableArea A2/A2 (420 x 594mm):                                        							 "11.62 11.62 1178.93 1672.16"
+*ImageableArea A3/A3 (297 x 420mm):                                                      "11.62 11.62 830.27 1178.93"
+*ImageableArea B4/B4 (257 x 364mm):                                                "11.62 11.62 716.88 1020.19"
+*ImageableArea A4/A4 (210 x 297mm):                                                      "11.62 11.62 583.65 830.27"
+*ImageableArea B5/B5 (182 x 257mm):                                                "11.62 11.62 504.28 716.88"
+*ImageableArea A5/A5 (148 x 210mm):                                                      "11.62 11.62 407.91 583.65"
+*ImageableArea A6/A6 (105 x 148mm):                                                      "11.62 11.62 286.02 407.91"
+*ImageableArea ENV_C5/C5 (162 x 229mm):                                         "11.62 11.62 447.59 637.51"
+*ImageableArea ENV_MONARCH/Monarch (3.875 x 7.5"):                               "11.62 11.62 267.38 528.38"
+*ImageableArea ENV_10/Com10 (4.125 x 9.5"):                                        "11.62 11.62 283.86 672.66"
+*ImageableArea ENV_DL/DL (110 x 220mm):                                         "11.62 11.62 300.19 612.00"
+*ImageableArea Letter/Letter (8.5 x 11"):                                              "11.62 11.62 600.38 780.38"
+*ImageableArea LEGAL/Legal (8.5 x 14"):                                                "11.62 11.62 600.38 996.38"
+*ImageableArea FOLIO/Folio (8.5 x 13"):                                          			 "11.62 11.62 600.38 924.38"
+*ImageableArea EXECUTIVE/Executive (7.25 x 10.5"):                                        "11.62 11.62 510.38 744.38"
+*ImageableArea 10X11/10x11": 																							 "11.62 11.62 708.38 780.38"
+*ImageableArea 11X15/11x15":                                       			   "11.62 11.62 780.38 1068.38"
+*ImageableArea STATEMENT/Statement (139.7 x 215.9mm):  		                           				 "11.62 11.62 384.38 600.38"
+*ImageableArea POSTCARD1/Postcard (100 x 148mm):  		                           "11.62 11.62 271.84 407.91"
+*ImageableArea POSTCARD2/Postcard (148 x 200mm):  		                           "11.62 11.62 407.91 555.31"
+*ImageableArea YOUGATA2/Yougata 2 (114 x 162mm):  		                           					 "11.62 11.62 311.53 447.59"
+*ImageableArea YOUGATA3/Yougata 3 (98 x 148mm):  		                           					 "11.62 11.62 266.17 407.91"
+*ImageableArea YOUGATA4/Yougata 4 (105 x 235mm):  		                                     "11.62 11.62 286.02 654.52"
+*ImageableArea YOUGATA6/Yougata 6 (98 x 190mm):  		                           					 "11.62 11.62 266.17 526.96"
+*ImageableArea YOUNATA3/Younata 3 (120 x 235mm):  		                           					 "11.62 11.62 328.54 654.52"
+*ImageableArea NAGAGATA3/Nagagata 3 (120 x 235mm):  		                           				 "11.62 11.62 328.54 654.52"
+*ImageableArea NAGAGATA4/Nagagata 4 (90 x 205mm):  		                           				 "11.62 11.62 243.50 569.48"
+*ImageableArea KAKUGATA3/Kakugata 3 (216 x 277mm):  		                           				 "11.62 11.62 600.66 773.57"
+*?ImageableArea: "
+   save
+   3 dict begin
+   /cvp { (                ) cvs print ( ) print } bind def
+   /upperright {10000 mul floor 10000 div} bind def
+   /lowerleft {10000 mul ceiling 10000 div} bind def
+   newpath clippath pathbbox
+   4 -2 roll exch 2 {lowerleft cvp} repeat
+   exch 2 {upperright cvp} repeat (\n) print flush
+   end
+   restore
+"
+*End
+*%=================================================
+*% Paper Dimension ================================
+*%=================================================
+*% These provide the physical dimensions of the paper (by keyword)
+*DefaultPaperDimension: Letter
+*PaperDimension A1/A1 (594 x 841mm):                                                     "1684 2384"
+*PaperDimension A2/A2 (420 x 594mm):                                                     "1191 1684"
+*PaperDimension A3/A3 (297 x 420mm):                                                     "842 1191"
+*PaperDimension B4/B4 (257 x 364mm):                                                     "729 1032"
+*PaperDimension A4/A4 (210 x 297mm):                                                     "595 842"
+*PaperDimension B5/B5 (182 x 257mm):                                               "516 729"
+*PaperDimension A5/A5 (148 x 210mm):                                                     "420 595"
+*PaperDimension A6/A6 (105 x 148mm):                                                     "298 421"
+*PaperDimension ENV_C5/C5 (162 x 229mm):                                        "459 649"
+*PaperDimension ENV_MONARCH/Monarch (3.875 x 7.5"):                              "279 540"
+*PaperDimension ENV_10/Com10 (4.125 x 9.5"):                                       "297 684"
+*PaperDimension ENV_DL/DL (110 x 220mm):                                        "312 624"
+*PaperDimension Letter/Letter (8.5 x 11"):                                             "612 792"
+*PaperDimension LEGAL/Legal (8.5 x 14"):                                         			 "612 1008"
+*PaperDimension FOLIO/Folio (8.5 x 13"):                                         			 "612 936"
+*PaperDimension EXECUTIVE/Executive (7.25 x 10.5"):                                       "522 756"
+*PaperDimension 10X11/10x11":                                               "720 792"
+*PaperDimension 11X15/11x15": 																							"792 1080"
+*PaperDimension STATEMENT/Statement (139.7 x 215.9mm):                                			 "396 612"
+*PaperDimension POSTCARD1/Postcard (100 x 148mm):                               "283 420"
+*PaperDimension POSTCARD2/Postcard (148 x 200mm):                               "420 567"
+*PaperDimension YOUGATA2/Yougata 2 (114 x 162mm:                                				 "323 459"
+*PaperDimension YOUGATA3/Yougata 3 (98 x 148mm):                                				 "278 420"
+*PaperDimension YOUGATA4/Yougata 4 (105 x 235mm):                                				 "298 666"
+*PaperDimension YOUGATA6/Yougata 6 (98 x 190mm):                                				 "278 539"
+*PaperDimension YOUNATA3/Younata 3 (120 x 235mm):                                				 "341 666"
+*PaperDimension NAGAGATA3/Nagagata 3 (120 x 235mm):                                			 "340 666"
+*PaperDimension NAGAGATA4/Nagagata 4 (90 x 205mm):                                			 "255 581"
+*PaperDimension KAKUGATA3/Kakugata 3 (216 x 277mm):                                			 "612 785"
+*%=================================================
+*% Custom Paper Size==============================
+*%=================================================
+*% min: 216 pts x 360 pts   (76.2mm * 127mm)
+*% max: 624 pts x 1008 pts  (8.5 inch * 14.00 inch)
+*HWMargins: 12 12 12 12
+*LeadingEdge Short: ""
+*DefaultLeadingEdge: Short
+*MaxMediaWidth: "612"
+*MaxMediaHeight: "1008"
+*NonUIOrderDependency: 80.0 AnySetup *CustomPageSize
+*CustomPageSize True: "
+5 dict dup /LeadingEdge null put
+dup /MediaType (Custom) put 
+dup /MediaClass null put currentpagedevice
+dup /MediaPosition get null eq
+{/Policies 2 copy known
+  {get /PageSize 2 copy known
+    {get dup 3 ge exch 6 le and {dup /DeferredMediaSelection false put} if}
+    {pop pop} ifelse
+  }{pop pop} ifelse
+}{pop} ifelse setpagedevice
+userdict /4.3PPDCompliant known
+    {userdict /4.3PPDCompliant get } {false} ifelse
+{ % From Print Managers complying with 4.3 PPD Spec.
+  pop pop pop % discard orientation & offsets
+  3 dict begin
+    /PageSize [
+      4 -2 roll
+    ] def
+  /ImagingBBox null def
+  currentdict end setpagedevice
+}{ % From Print Managers not complying with 4.3 PPD Spec.
+  pop pop pop % discard orientation & offsets
+  3 dict begin
+    /PageSize [
+      4 -2 roll exch
+    ] def
+  /ImagingBBox null def
+  currentdict end setpagedevice
+} ifelse
+"
+*End
+*ParamCustomPageSize Height:       1 points 360 1008
+*ParamCustomPageSize Width:        2 points 216 612
+*ParamCustomPageSize WidthOffset:  3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation:  5 int 1 1
+
+*OpenGroup: AdvancedMedia/7. Media Handling
+*% Collate ===============
+*OpenUI *Collate/Collated: Boolean
+*OrderDependency: 15.0 AnySetup *Collate
+*DefaultCollate: False
+*Collate False/Off: "
+        1  dict dup /Collate false put setpagedevice"
+*End
+*Collate True/On: "
+        1  dict dup /Collate true put setpagedevice"
+*End
+*?Collate: "
+  save
+    currentpagedevice /Collate get
+    {(True)} {(False)} ifelse
+    = flush
+  restore
+"
+*End
+*CloseUI: *Collate
+
+*% MediaType ===============
+*OpenUI *MediaType/Paper Type:  PickOne
+*OrderDependency: 90.0 AnySetup *MediaType
+*DefaultMediaType: Plain
+*MediaType Plain/Plain: "1 dict dup /MediaClass (Plain) put setpagedevice"
+*MediaType Light/LightWeight Cardstock: "1 dict dup /MediaClass (Light) put setpagedevice"
+*MediaType Label/Labels: "1 dict dup /MediaClass (Label) put setpagedevice"
+*MediaType Envelope/Envelope: "1 dict dup /MediaClass (Envelope) put setpagedevice"
+*MediaType Recycled/Recycled: "1 dict dup /MediaClass (Recycled) put setpagedevice"
+*MediaType Postcard/Postcard JPN: "1 dict dup /MediaClass (Postcard) put setpagedevice"
+*?MediaType: "
+save
+    currentpagedevice /MediaClass get dup null eq {pop (Plain1)}
+    {dup (Plain) eq {pop (Plain)}
+     {dup (Light) eq {pop (Light)}
+     {dup (Label) eq {pop (Label)}
+     {dup (Envelope) eq {pop (Envelope)}
+     {dup (Recycled) eq {pop (Recycled)}
+     {dup (Postcard) eq {pop (Postcard)}
+                {(Unknown)} ifelse
+               } ifelse
+     } ifelse
+*%    } ifelse
+   = flush
+restore
+"
+*End
+*CloseUI: *MediaType
+
+*%OpenUI *FXCustomPageSizeCorrection/Custom Paper Auto Orientation: Boolean
+*%OrderDependency: 1.0 Prolog *FXCustomPageSizeCorrection
+*%DefaultFXCustomPageSizeCorrection: True
+*%FXCustomPageSizeCorrection False/Off: "userdict /4.3PPDCompliant true put"
+*%FXCustomPageSizeCorrection True/On: "userdict /4.3PPDCompliant false put"
+*%?FXCustomPageSizeCorrection: "
+*%    save
+*%    (Unknown)
+*%    userdict /4.3PPDCompliant known
+*%        {userdict /4.3PPDCompliant get
+*%            {pop (False) }{pop (True)} ifelse
+*%        } if
+*%        = flush
+*%    restore
+*%"
+*%End
+*%CloseUI: *FXCustomPageSizeCorrection
+*CloseGroup: AdvancedMedia
+
+
+
+
+*% Printer Messages (verbatim from printer):
+*Message: "%%[ exitserver: permanent state may be changed ]%%"
+*Message: "%%[ Flushing: rest of job (to end-of-file) will be ignored ]%%"
+*Message: "\FontName\ not found, using Courier"
+
+*% Status (format: %%[ status: <one of these> ] %%)
+*Status: "busy"
+*Status: "idle"
+*Status: "initializing"
+*Status: "PrinterError"
+*Status: "PrinterError: belt error"
+*Status: "PrinterError: belt life over"
+*Status: "PrinterError: belt out"
+*Status: "PrinterError: cover open"
+*Status: "PrinterError: disk full"
+*Status: "PrinterError: download error"
+*Status: "PrinterError: error"
+*Status: "PrinterError: fuser error"
+*Status: "PrinterError: fuser life over"
+*Status: "PrinterError: fuser out"
+*Status: "PrinterError: memory full"
+*Status: "PrinterError: no paper"
+*Status: "PrinterError: no paper tray"
+*Status: "PrinterError: NVRAM malfunction"
+*Status: "PrinterError: paper jam"
+*Status: "PrinterError: paper size mismatch"
+*Status: "PrinterError: service call"
+*Status: "PrinterError: toner error"
+*Status: "PrinterError: toner life over"
+*Status: "PrinterError: toner out"
+*Status: "PrinterError: toner over"
+
+*% Input Sources (format: %%[ status: <stat>; source: <one of these> ]%% )
+*Source: "Parallel"
+*Source: "USB"
+*Source: "EtherTalk"
+
+*% Printer Error (format: %%[ PrinterError: <one of these> ]%%)
+*PrinterError: "belt error"
+*PrinterError: "belt life over"
+*PrinterError: "belt out"
+*PrinterError: "cover open"
+*PrinterError: "disk full"
+*PrinterError: "download error"
+*PrinterError: "error"
+*PrinterError: "fuser error"
+*PrinterError: "fuser life over"
+*PrinterError: "fuser out"
+*PrinterError: "memory full"
+*PrinterError: "no paper"
+*PrinterError: "no paper tray"
+*PrinterError: "NVRAM malfunction"
+*PrinterError: "paper jam"
+*PrinterError: "paper size mismatch"
+*PrinterError: "service call"
+*PrinterError: "toner error"
+*PrinterError: "toner life over"
+*PrinterError: "toner out"
+*PrinterError: "toner over"
+
+*% Color Separation Information =====================
+*%*DefaultGuaranteedMaxSeparations: 1
+*%*GuaranteedMaxSeparations 4: ""
+*%*GuaranteedMaxSeparations 3: ""
+*%*GuaranteedMaxSeparations 2: ""
+*%*GuaranteedMaxSeparations 1: ""
+*%*?GuaranteedMaxSeparations: "
+*%    currentpagedevice /MaxSeparations get ="
+*%*End
+
+*% Produced using PPDTool 2.3's BLDPPD43.PS file
+*% Last Edit Date: 2007-02-28
+*% end of PPD file
+
